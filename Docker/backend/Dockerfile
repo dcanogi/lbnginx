@@ -1,9 +1,11 @@
-server {
-    listen 8080;
-    server_name localhost;
+# Dockerfile for NGINX Backend Server
+FROM nginx:latest
 
-    location / {
-        root /usr/share/nginx/html;
-        index index.html;
-    }
-}
+# Copy the default NGINX configuration
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 8080 for the backend servers
+EXPOSE 8080
+
+# Start NGINX in the foreground
+CMD ["nginx", "-g", "daemon off;"]
