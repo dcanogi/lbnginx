@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  backend1:
+    build:
+      context: ./backend
+    container_name: backend1
+    networks:
+      mynet:
+        ipv4_address: 192.168.1.225
+
+  backend2:
+    build:
+      context: ./backend
+    container_name: backend2
+    networks:
+      mynet:
+        ipv4_address: 192.168.1.133
+
+  loadbalancer:
+    build:
+      context: ./loadbalancer
+    container_name: loadbalancer
+    ports:
+      - "8080:8080"
+    networks:
+      mynet:
+        ipv4_address: 192.168.1.222
+    depends_on:
+      - backend1
+      - backend2
+
+networks:
+  mynet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.1.0/24"
