@@ -182,3 +182,5 @@ Ensure that the backend servers (`192.168.1.225` and `192.168.1.133`) are proper
 ## Conclusion
 
 This setup provides a basic load balancing solution using NGINX on a proxy server to distribute requests across two backend servers running on RHEL. You can scale this by adding more backend servers or adjusting the NGINX configuration to suit your needs.
+
+If want the same with Docker option see the Folder Docker
